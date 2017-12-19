@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous">
+    <title>Registrar charla</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+
+            <div class="card-body">
+                <div class="card-title">
+                    <h1>Registra una charla</h1>
+                </div>
+                <form action="" class="card-text" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="name">Nombre completo:</label>
+                        <input type="text" class="form-control" id="name" name="name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico:</label>
+                        <input type="email" class="form-control" id="email" name="email" />
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Usuario de twitter:</label>
+                        <input type="text" class="form-control" id="twitterUser" name="twitterUser">
+                        </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Título de la charla:</label>
+                        <input type="text" class="form-control" id="talkTitle" name="talkTitle" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Duración aproximada:</label>
+                        <input type="text" class="form-control" id="duration" name="duration" />
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Breve descripción de la charla ó conferencia:</label>
+                        <textarea id="talkDescription" class="form-control" name="talkDescription"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Breve descripción sobre usted (trayectoria, ocupación, etc):</label>
+                        <textarea id="speakerDescription" class="form-control" name="speakerDescription"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Recursos necesarios:</label>
+                        <textarea id="sources" class="form-control" name="sources"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Talla de camiseta:</label>
+                        <select class="form-control" name="size" id="size">
+                            <option value="xs">XS</option>
+                            <option value="s">S</option>
+                            <option value="m">M</option>
+                            <option value="l">L</option>
+                            <option value="xl">XL</option>
+                        </select>
+                        <br />
+                        <input type="submit" class="btn btn-success" value="Enviar" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

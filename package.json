@@ -1,0 +1,27 @@
+{
+  "name": "talks_register",
+  "version": "1.0.0",
+  "description": "service for web form that allows regiter talks dor MedJS",
+  "main": "server.js",
+  "scripts": {
+    "test": "test",
+    "start": "nodemon server.js"
+  },
+  "author": "Jeny Mazo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/JenyMzo/talks_register.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JenyMzo/talks_register/issues"
+  },
+  "homepage": "https://github.com/JenyMzo/talks_register#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongoose": "^4.13.7"
+  },
+  "devDependencies": {
+    "nodemon": "^1.13.3"
+  }
+}
