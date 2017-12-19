@@ -1,6 +1,7 @@
 'use strict';
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Speaker = mongoose.model('Speaker');
 
 const TalkSchema = new Schema({
     title: {
@@ -15,7 +16,7 @@ const TalkSchema = new Schema({
         type: String,
         required: 'Please enter a description for the talk'
     },
-    size: {
+    sources: {
         type: String,
         required: 'Please enter the required sources for the talk'
     },
@@ -29,7 +30,8 @@ const TalkSchema = new Schema({
             enum: ['pending', 'done']
         }],
         default: ['pending']
-    }
+    },
+    speakers: [{ type: Schema.Types.ObjectId, ref: 'Speaker' }]
 });
 
 module.exports = mongoose.model('Talk', TalkSchema);

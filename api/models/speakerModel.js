@@ -1,6 +1,7 @@
 'use strict';
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+// const Talk = mongoose.model('Talk');
 
 const SpeakerSchema = new Schema({
     name: {
@@ -9,6 +10,7 @@ const SpeakerSchema = new Schema({
     },
     email: {
         type: String,
+        unique : true,
         required: 'Please enter the email of the speaker'
     },
     twitterUser: {
@@ -26,7 +28,7 @@ const SpeakerSchema = new Schema({
     created_date: {
         type: Date,
         default: Date.now
-    },
+    }
 });
 
 module.exports = mongoose.model('Speaker', SpeakerSchema);
