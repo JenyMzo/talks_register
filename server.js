@@ -6,7 +6,7 @@ const Speaker = require('./api/models/speakerModel');
 const Talk = require('./api/models/talkModel');
 const bodyParser = require('body-parser');
 
-// mongoose instance connection url connection
+// mongoose url connection
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://medjs:medjs2017@ds161016.mlab.com:61016/talks');
 

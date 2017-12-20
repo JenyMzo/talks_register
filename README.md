@@ -282,6 +282,18 @@ exports.delete_a_talk = function (req, res) {
 ## Conecting to the database
 As mentioned before, we are going to use [MongoLab](https://mlab.com) to host our database, in fact it's already created, so let's connect :)
 
+- Require mongoose and our models on our server.js file
+```js
+const mongoose = require('mongoose');
+const Speaker = require('./api/models/speakerModel');
+const Talk = require('./api/models/talkModel');
+```
+- Connect to de database
+```js
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://medjs:medjs2017@ds161016.mlab.com:61016/talks');
+```
+
 
 
 
