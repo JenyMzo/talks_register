@@ -1,4 +1,4 @@
-# API REST for talk proposal on MedellínJS
+# API REST for talk proposal in MedellínJS
 
 ## Prerequisites
 
