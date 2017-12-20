@@ -1,9 +1,9 @@
 ## Prerequisites
 
-- [NodeJS - NPM installed] (#)
-- [Postman]
+- NodeJS - NPM installed
+- Postman
 
-We are going to use [MongoLab] (https://mlab.com) to host our database, so we don't need to have [MongoDB] installed on our machine.
+We are going to use [MongoLab](https://mlab.com) to host our database, so we don't need to have [MongoDB] installed on our machine.
 
 ## Getting started
 
