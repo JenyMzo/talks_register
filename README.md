@@ -152,7 +152,7 @@ module.exports = function (app) {
     });
 };
 ```
-- Require routes.js
+- Require routes.js on server.js
 ```js
 const routes = require('./api/routes/routes.js');
 ```
@@ -340,7 +340,7 @@ const middlewares = require('./middlewares.js');
 middlewares(app);
 ```
 ## Consolidating server.js
-The server.js file should look like this:
+Finally the server.js file should look like this:
 ```js
 const connection = require('./connection.js');
 const express = require('express');
