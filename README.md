@@ -1,3 +1,5 @@
+# API REST for talk proposal on MedellínJS
+
 ## Prerequisites
 
 - NodeJS - NPM installed
@@ -77,7 +79,7 @@ module.exports = mongoose.model('Speaker', SpeakerSchema);
 ```
 - Our talk model should look like this:
 ```js
-    'use strict';
+'use strict';
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Speaker = mongoose.model('Speaker');
@@ -145,3 +147,142 @@ module.exports = function (app) {
         .delete(speakers.delete_a_speaker);
 };
 ```
+- Our speakers controller should look like this:
+```js
+'use strict';
+
+var mongoose = require('mongoose'),
+    Speaker = mongoose.model('Speaker'),
+    Talk = mongoose.model('Talk');
+
+exports.list_all_speakers = function (req, res) {
+    Speaker.find({}, function (err, speaker) {
+        if (err) {
+            return res.send(err);
+        }
+        return res.json(speaker);
+    });
+};
+
+exports.create_a_speaker = function (req, res) {
+    var new_speaker = new Speaker(req.body);
+    new_speaker.save(function (err, speaker) {
+        if (err) {
+            return res.send(err);
+        }
+        return res.json(speaker);
+    });
+};
+
+exports.get_a_speaker = function (req, res) {
+    Speaker.findById(req.params.speakerId, function (err, speaker) {
+        if (err) {
+            res.send(err);
+        }
+        return res.json(speaker);
+    });
+};
+
+exports.update_a_speaker = function (req, res) {
+    Speaker.findOneAndUpdate({
+        _id: req.params.speakerId
+    },
+        req.body,
+        {
+            new: true
+        },
+        function (err, speaker) {
+            if (err)
+                res.send(err);
+            res.json(speaker);
+        });
+};
+
+exports.delete_a_speaker = function (req, res) {
+    Speaker.remove({
+        _id: req.params.speakerId
+    }, function (err, speaker) {
+        if (err)
+            res.send(err);
+        res.json({
+            message: 'Speaker successfully deleted'
+        });
+    });
+};
+```
+- Our talks controller should look like this:
+```js
+'use strict';
+
+const mongoose = require('mongoose'),
+    Talk = mongoose.model('Talk'),
+    Speaker = mongoose.model('Speaker');
+
+exports.list_all_talks = function (req, res) {
+    Talk.find({}).
+        populate('speakers').
+        exec( function (err, talk) {
+        if (err) {
+            return res.send(err);
+        }
+        return res.json(talk);
+    });
+};
+
+exports.create_a_talk = function (req, res) {
+    var new_talk = new Talk(req.body);
+    new_talk.save(function (err, talk) {
+        if (err) {
+            return res.send(err);
+        }
+        return res.json(talk);
+    });
+};
+
+exports.get_a_talk = function (req, res) {
+    Talk.findById(req.params.talkId).
+        populate('speakers').
+        exec(function (err, talk) {
+            if (err) {
+                return res.send(err);
+            }
+            return res.json(talk);
+        });
+};
+
+exports.update_a_talk = function (req, res) {
+    Talk.findOneAndUpdate({
+        _id: req.params.talkId
+    },
+        req.body,
+        {
+            new: true
+        },
+        function (err, talk) {
+            if (err) {
+                return res.send(err);
+            }
+            return res.json(talk);
+        });
+};
+
+exports.delete_a_talk = function (req, res) {
+    Talk.remove({
+        _id: req.params.talkId
+    }, function (err, talk) {
+        if (err) {
+            return res.send(err);
+        }
+        return res.json({
+            message: 'Talk successfully deleted'
+        });
+    });
+};
+```
+## Conecting to the database
+As mentioned before, we are going to use [MongoLab](https://mlab.com) to host our database, in fact it's already created, so let's connect :)
+
+
+
+
+
