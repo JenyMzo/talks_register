@@ -22,7 +22,7 @@ We are going to use [MongoLab](https://mlab.com) to host our database, so we don
 - Install express ```npm install express --save```
 - Install nodemon as dev dependency  ```npm install --save-dev nodemon```
 - On the package.json we are going to add the following script ```"start": "nodemon server.js"```
-- This will be out initial server.js
+- This will be our initial server.js
 ```js
 const express = require('express'),
   app = express(),
@@ -30,9 +30,5 @@ const express = require('express'),
 
 app.listen(port);
 
-console.log('todo list RESTful API server started on: ' + port);```
-
-
-
-
-
+console.log('todo list RESTful API server started on: ' + port);
+```
