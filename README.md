@@ -3,7 +3,7 @@
 - NodeJS - NPM installed
 - Postman
 
-We are going to use [MongoLab](https://mlab.com) to host our database, so we don't need to have [MongoDB] installed on our machine.
+We are going to use [MongoLab](https://mlab.com) to host our database, so we don't need to have MongoDB installed on our machine.
 
 ## Getting started
 
@@ -12,12 +12,26 @@ We are going to use [MongoLab](https://mlab.com) to host our database, so we don
 - Create the package.json file ```npm init```
 - Create a file called server.js ```touch server.js```
 - Create a folder called api ```mkdir api```
-- Inside api folder, we are going to create folders [models, controllers and routes] ```mkdir api/controllers api/models api/routes```
+- Inside api folder, we are going to create folders for models, controllers and routes ```mkdir api/controllers api/models api/routes```
 - Create talksController.js and speakersController.js in the api/controller folder ```touch api/controllers/talksController.js api/controllers/speakerController.js```
 - Create routes.js in the routes folder ```touch api/routes/routes.js```
-- Create talkModel.js and speakerModel.js in the model folder ```touch api/models/todoListModel.js```
+- Create talkModel.js and speakerModel.js in the model folder ```touch api/models/talkModel.js api/models/speakerModel.js```
 
 ## Server setup
+
+- Install express ```npm install express --save```
+- Install nodemon as dev dependency  ```npm install --save-dev nodemon```
+- On the package.json we are going to add the following script ```"start": "nodemon server.js"```
+- This will be out initial server.js
+```js
+const express = require('express'),
+  app = express(),
+  port = process.env.PORT || 8081;
+
+app.listen(port);
+
+console.log('todo list RESTful API server started on: ' + port);```
+
 
 
 
