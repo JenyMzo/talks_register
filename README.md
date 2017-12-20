@@ -314,7 +314,7 @@ module.exports = () => {
 ```js
 const connection = require('./connection.js');
 ```
-- Call the connection function in server.js
+- Call the connection function on server.js
 ```js
 connection();
 ```
