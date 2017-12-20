@@ -23,4 +23,9 @@ module.exports = function (app) {
         .get(speakers.get_a_speaker)
         .put(speakers.update_a_speaker)
         .delete(speakers.delete_a_speaker);
+
+    app.get('*', function (req, res) {
+        console.log('res', res.statusCode);
+        return res.status(404).send({ url: req.originalUrl + 'not found' });
+    });
 };
