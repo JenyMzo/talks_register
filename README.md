@@ -39,7 +39,7 @@ console.log('RESTful API server started on: ' + port);
 
 ## Configuring Database
 
-- Install mongoose ```npm install mongoose --save````
+- Install mongoose ```npm install mongoose --save```
 - Our speaker model should look like this:
 ```js
 'use strict';
@@ -145,8 +145,23 @@ module.exports = function (app) {
         .get(speakers.get_a_speaker)
         .put(speakers.update_a_speaker)
         .delete(speakers.delete_a_speaker);
+
+    app.get('*', function (req, res) {
+        console.log('res', res.statusCode);
+        return res.status(404).send({ url: req.originalUrl + 'not found' });
+    });
 };
 ```
+- Require routes.js
+```js
+const routes = require('./api/routes/routes.js');
+```
+- Call the function on server.js
+```js
+routes(app);
+```
+
+## Creating Controllers
 - Our speakers controller should look like this:
 ```js
 'use strict';
@@ -281,8 +296,8 @@ exports.delete_a_talk = function (req, res) {
 ```
 ## Conecting to the database
 As mentioned before, we are going to use [MongoLab](https://mlab.com) to host our database, in fact it's already created, so let's connect :)
-
-- Require mongoose and our models on our server.js file
+- Create a connection.js file
+- Inside that file require mongoose, speaker and talk models
 ```js
 const mongoose = require('mongoose');
 const Speaker = require('./api/models/speakerModel');
@@ -290,11 +305,54 @@ const Talk = require('./api/models/talkModel');
 ```
 - Connect to de database
 ```js
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://medjs:medjs2017@ds161016.mlab.com:61016/talks');
+module.exports = () => {
+    mongoose.Promise = global.Promise;
+    mongoose.connect('mongodb://medjs:medjs2017@ds161016.mlab.com:61016/talks');
+}
 ```
+- Require connection.js on server.js
+```js
+const connection = require('./connection.js');
+```
+- Call the connection function in server.js
+```js
+connection();
+```
+## Creating Middlewares
+We are going to use body-parser, a middleware module that extracts the entire body of an incoming request stream and exposes it on req.body.
+- Let's create a middlewares.js file like this:
+```js
+'use strict';
 
+const bodyParser = require('body-parser');
 
+module.exports = function (app) {
+    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(bodyParser.json());
+};
+```
+- Require middlewares.js on server.js
+```js
+const middlewares = require('./middlewares.js');
+```
+- Call the function on server.js
+```js
+middlewares(app);
+```
+## Consolidating server.js
+The server.js file should look like this:
+```js
+const connection = require('./connection.js');
+const express = require('express');
+const app = express();
+const middlewares = require('./middlewares.js');
+const port = process.env.PORT || 8081;
+const routes = require('./api/routes/routes.js');
 
+connection();
+middlewares(app);
+routes(app);
+app.listen(port);
 
-
+console.log('RESTful API server started on: ' + port);
+```
